@@ -1,0 +1,56 @@
+﻿@using Kütüphanem.Models.Book
+@model BookAddViewModel
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="p-4 shadow rounded" style="max-width: 500px; width: 100%; background-color: white; color: #222222;">
+        <h3 class="text-center mb-4">Kütüphaneye Yeni Bir Kitap Ekleyin</h3>
+        <form asp-controller="Book" asp-action="Add" enctype="multipart/form-data" method="post">
+            <div class="mb-3">
+                <label>Kitap Adı</label>
+                <input type="text" class="form-control" placeholder="Kitap Adı Giriniz" asp-for="Title" />
+            </div>
+            <div class="mb-3">
+                <label>Yazar Adı</label>
+                @if (ViewBag.Authors != null && ((List<BookAuthorAddViewModel>)ViewBag.Authors).Any())
+                {
+                    <select asp-for="AuthorId" asp-items="@(new SelectList(ViewBag.Authors, "Id", "FullName", Model?.AuthorId))" class="form-select"></select>
+                }
+                else
+                {
+                    <p class="text-danger">Yazar listesi yüklenemedi.</p>
+                }
+            </div>
+            <div class="mb-3">
+                <label>Kitap türü</label>
+                <select class="form-select" asp-for="Genre">
+                    <option value="Roman">Roman</option>
+                    <option value="Bilim Kurgu">Bilim Kurgu</option>
+                    <option value="Fantastik">Fantastik</option>
+                    <option value="Korku">Korku</option>
+                    <option value="Biyografi">Biyografi</option>
+                    <option value="Tarih">Tarih</option>
+                    <option value="Çocuk Kitapları">Çocuk Kitapları</option>
+                    <option value="Diğer">Diğer</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label>Yayın Tarihi</label>
+                <input type="date" class="form-control" asp-for="PublishDate" />
+            </div>
+            <div class="mb-3">
+                <label>ISBN Numarası</label>
+                <input type="text" class="form-control" placeholder="ISBN Numarası Giriniz" asp-for="ISBN" />
+            </div>
+            <div class="mb-3">
+                <label>Kitap Adet</label>
+                <input type="number" class="form-control" placeholder="Kitap Adedi Giriniz" asp-for="CopiesAvailable" />
+            </div>
+            <div class="mb-3">
+                <label for="ImageFile">Kapak Görseli</label>
+                <input asp-for="ImageFile" type="file" accept="image/*" class="form-control" />
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary px-4 py-2">Kitap Ekle</button>
+            </div>
+        </form>
+    </div>
+</div>

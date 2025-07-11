@@ -1,0 +1,46 @@
+﻿@using Kütüphanem.Models.Author
+@model AuthorDetailViewModel
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card shadow-sm text-center p-4" style="max-width: 400px; width: 100%; background-color: 	#e6d8ad;">
+
+        <img src="@Url.Content("~/" + Model.ImageUrl)"
+             alt="Yazar Resmi"
+             class="img-fluid rounded mx-auto mb-3"
+             style="max-width: 200px;" />
+
+        <h4 class="mb-3">@Model.FullName</h4>
+
+        <p><strong>Yazar ID:</strong> @Model.Id</p>
+        <p><strong>Doğum Tarihi:</strong> @Model.DateOfBirth.ToString("dd.MM.yyyy")</p>
+        <p>@Model.Description</p>
+        @if (Model.Books != null && Model.Books.Any())
+        {
+            <div class="mt-4">
+                <h5>Yazara Ait Kitaplar</h5>
+                <ul class="list-group">
+                    @foreach (var book in Model.Books)
+                    {
+                        <li class="list-group-item">
+                            <a href="/Book/Detail/@book.Id">@book.Title</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+        else
+        {
+            <p class="mt-4 text-muted">Bu yazara ait kitap bulunmamaktadır.</p>
+        }
+
+
+        <div class="d-flex justify-content-center gap-2 mt-3">
+            <a asp-controller="Author" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-primary btn-sm">Düzenle</a>
+            <a asp-controller="Author" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger btn-sm">Sil</a>
+        </div>
+
+        <div class="mt-4">
+            <a href="/Author/List" class="btn btn-warning fw-bold btn-sm">Geri Dön</a>
+        </div>
+    </div>
+</div>

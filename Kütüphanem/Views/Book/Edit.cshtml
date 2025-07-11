@@ -1,0 +1,60 @@
+﻿@using Kütüphanem.Models.Book
+@model BookEditViewModel
+
+<h3 class="text-center">Kitap Düzenleme Formu</h3>
+
+<form method="post" asp-controller="Book" asp-action="Edit" enctype="multipart/form-data">
+    <input asp-for="Id" type="hidden" />
+
+    <div>
+        <label>Kitap Adı</label>
+        <input type="text" class="form-control" asp-for="Title" />
+    </div>
+
+    <div>
+        <label>Yazar Adı</label>
+        <select asp-for="AuthorId" asp-items="@(new SelectList(ViewBag.Authors, "Id", "FullName", Model.AuthorId))" class="form-select"></select>
+    </div>
+
+    <div>
+        <label>Kitap Türü</label>
+        <select class="form-select" asp-for="Genre">
+            <option value="Roman">Roman</option>
+            <option value="Bilim Kurgu">Bilim Kurgu</option>
+            <option value="Fantastik">Fantastik</option>
+            <option value="Korku">Korku</option>
+            <option value="Biyografi">Biyografi</option>
+            <option value="Tarih">Tarih</option>
+            <option value="Çocuk Kitapları">Çocuk Kitapları</option>
+            <option value="Diğer">Diğer</option>
+        </select>
+    </div>
+
+    <div>
+        <label>Yayın Tarihi</label>
+        <input type="date" class="form-control" asp-for="PublishDate" />
+    </div>
+
+    <div>
+        <label>ISBN Numarası</label>
+        <input type="text" class="form-control" asp-for="ISBN" />
+    </div>
+
+    <div>
+        <label>Kitap Adet</label>
+        <input type="number" class="form-control" asp-for="CopiesAvailable" />
+    </div>
+
+    <div class="mb-3">
+        <label for="ImageFile">Mevcut Kapak:</label><br />
+        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+        {
+            <img src="@Url.Content("~/" + Model.ImageUrl)" alt="Kapak" style="max-width: 150px; margin-bottom: 10px;" />
+        }
+        <br />
+        <label for="ImageFile">Yeni Kapak Yükle</label>
+        <input asp-for="ImageFile" type="file" accept="image/*" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Kitabı Güncelle</button>
+</form>

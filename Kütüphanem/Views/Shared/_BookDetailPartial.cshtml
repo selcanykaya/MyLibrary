@@ -1,0 +1,38 @@
+﻿@using Kütüphanem.Models.Book
+@model BookDetailViewModel
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card shadow-sm text-center p-4" style="max-width: 400px; width: 100%; background-color:#e6d8ad;">
+
+        <img src="@Url.Content("~/" + Model.ImageUrl)"
+             alt="Kitap Kapağı"
+             class="img-fluid rounded mx-auto mb-3"
+             style="max-width: 200px; height: auto;"
+             onerror="this.onerror=null; this.src='/bookImages/default.jpg';" />
+
+        <h4 class="mb-3">@Model.Title</h4>
+
+        <p>
+            <strong>Yazar:</strong>
+            @if (!string.IsNullOrEmpty(Model.AuthorName) && Model.AuthorName.Trim().ToLower() != "bilinmiyor")
+            {
+                <a href="/Author/Detail/@Model.AuthorId">@Model.AuthorName</a>
+            }
+            else
+                @Model.AuthorName
+
+        </p>
+        <p><strong>Yayın Tarihi:</strong> @Model.PublishDate.ToString("dd.MM.yyyy")</p>
+        <p><strong>Türü:</strong>@Model.Genre</p>
+
+        <div class="d-flex justify-content-center gap-2 mt-3">
+            <a asp-controller="Book" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-primary btn-sm">Düzenle</a>
+            <a asp-controller="Book" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger btn-sm">Sil</a>
+        </div>
+
+        <div class="mt-4">
+            <a href="/Book/List" class="btn btn-warning fw-bold btn-sm">Geri Dön</a>
+        </div>
+    </div>
+</div>
+

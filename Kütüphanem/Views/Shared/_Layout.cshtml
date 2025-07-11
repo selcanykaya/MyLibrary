@@ -1,0 +1,71 @@
+﻿<html>
+<head>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <style>
+        .nav-pills .nav-link {
+            background-color: #008080; /* Teal */
+            color: white;
+            margin-right: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+            .nav-pills .nav-link:hover {
+                background-color: #005757; /* Daha koyu teal */
+                color: white;
+            }
+
+            .nav-pills .nav-link.active {
+                background-color: #005757; /* Aktif olan da koyu teal */
+                color: white;
+            }
+
+       
+        body {
+            padding-bottom: 80px; /* Footer yüksekliği kadar boşluk */
+        
+            background-color: beige; /* Koyu lacivert */
+            color: #b2dfdb; /* Teal’in açık tonlarından yazı rengi */
+            font-family: Arial, sans-serif;
+        }
+        
+
+		
+    </style>
+</head>
+<body>
+	<div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+            <div class="d-flex align-items-center mb-3 mb-md-0 me-md-auto">
+				<a href="/"> <img src="~/Icon/icon.png" alt="Logo" style="height: 48px; width: auto;" class="me-2" /></a>
+               
+            </div>
+            <ul class="nav nav-pills align-items-center">
+                <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Anasayfa</a></li>
+                <li class="nav-item"><a href="/Book/List" class="nav-link">Kitaplar</a></li>
+                <li class="nav-item"><a href="/Author/List" class="nav-link">Yazarlar</a></li>
+                <li class="nav-item"><a href="/About/Index" class="nav-link">Hakkında</a></li>
+            </ul>
+        </header>
+
+		@RenderBody()
+        </div>
+        <footer style="background-color: #008080; position: fixed; bottom: 0; width: 100%; z-index: 999;">
+            <div class="container d-flex flex-wrap justify-content-between align-items-center py-3 px-4 border-top text-white">
+                <!-- Sol taraf -->
+                <div class="col-md-6 d-flex align-items-center">
+                    <small>&copy; 2025 Selcan Yalçınkaya Kütüphane Uygulaması. Tüm hakları saklıdır.</small>
+                </div>
+
+                <!-- Sağ taraf -->
+                <ul class="nav col-md-6 justify-content-end">
+                    <li class="nav-item"><a href="/" class="nav-link px-2 text-white">Anasayfa</a></li>
+                    <li class="nav-item"><a href="/book/list" class="nav-link px-2 text-white">Kitaplar</a></li>
+                    <li class="nav-item"><a href="/author/list" class="nav-link px-2 text-white">Yazarlar</a></li>
+                    <li class="nav-item"><a href="/about/index" class="nav-link px-2 text-white">Hakkında</a></li>
+                </ul>
+            </div>
+        </footer>
+	
+</body>
+</html>

@@ -1,0 +1,42 @@
+﻿@model AuthorEditViewModel
+@using Kütüphanem.Models.Author
+
+<h3 class="text-center">Yazar Bilgilerini Düzenle</h3>
+
+<form method="post" enctype="multipart/form-data" asp-action="Edit" asp-controller="Author">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label>Ad</label>
+        <input asp-for="FirstName" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Soyad</label>
+        <input asp-for="LastName" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Doğum Tarihi</label>
+        <input asp-for="DateOfBirth" type="date" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Açıklama</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+
+    @* Mevcut görsel *@
+    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+    {
+        <div class="mb-3">
+            <label>Mevcut Görsel:</label><br />
+            <img src="@Url.Content("~/" + Model.ImageUrl)" style="max-width: 200px;" class="img-thumbnail" />
+        </div>
+    }
+
+    @* Yeni görsel *@
+    <div class="mb-3">
+        <label>Yeni Görsel Yükle</label>
+        <input asp-for="ImageFile" type="file" accept="image/*" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Yazar Güncelle</button>
+</form>
